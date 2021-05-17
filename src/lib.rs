@@ -1,9 +1,9 @@
 // Types of arguments for auth handlers
 use serde::{Deserialize, Serialize};
-use strum::ToString;
+use strum::AsRefStr;
 
 #[allow(non_camel_case_types)]
-#[derive(Clone, Debug, Serialize, Deserialize, ToString)]
+#[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
 pub enum AuthError {
   NOT_FOUND,
   NO_CAPABILITY,
@@ -88,7 +88,7 @@ pub struct UserViewProps {
 }
 
 #[allow(non_camel_case_types)]
-#[derive(Clone, Debug, Serialize, Deserialize, ToString)]
+#[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
 pub enum PasswordKind {
   CHANGE,
   RESET,
@@ -111,7 +111,7 @@ pub struct PasswordViewProps {
 }
 
 #[allow(non_camel_case_types)]
-#[derive(Clone, Debug, Serialize, Deserialize, ToString)]
+#[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
 pub enum ApiKeyKind {
   VALID,
   CANCEL,
