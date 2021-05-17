@@ -1,5 +1,33 @@
 // Types of arguments for auth handlers
 use serde::{Deserialize, Serialize};
+use strum::ToString;
+
+#[allow(non_camel_case_types)]
+#[derive(Clone, Debug, Serialize, Deserialize, ToString)]
+pub enum AuthError {
+  NOT_FOUND,
+  NO_CAPABILITY,
+  API_KEY_UNAUTHORIZED,
+  PASSWORD_INCORRECT,
+  PASSWORD_INSECURE,
+  PASSWORD_CANNOT_CREATE_FOR_OTHERS,
+  USER_NONEXISTENT,
+  API_KEY_NONEXISTENT,
+  USER_EXISTENT,
+  USER_NAME_EMPTY,
+  USER_EMAIL_EMPTY,
+  USER_EMAIL_INVALIDATED,
+  NEGATIVE_DURATION,
+  CANNOT_ALTER_PAST,
+  VERIFICATION_CHALLENGE_NONEXISTENT,
+  VERIFICATION_CHALLENGE_TIMED_OUT,
+  PASSWORD_RESET_NONEXISTENT,
+  PASSWORD_EXISTENT,
+  PASSWORD_RESET_TIMED_OUT,
+  EMAIL_RATELIMIT,
+  EMAIL_BLACKLISTED,
+  UNKNOWN
+}
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ApiKeyNewValidProps {
@@ -44,6 +72,7 @@ pub struct PasswordNewResetProps {
   password_reset_key: String,
   new_password: String,
 }
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct UserViewProps {
   user_id: Option<u64>,              //
@@ -58,11 +87,12 @@ pub struct UserViewProps {
   api_key: String,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Debug, Serialize, Deserialize, ToString)]
 pub enum PasswordKind {
-  Change,
-  Reset,
-  Cancel,
+  CHANGE,
+  RESET,
+  CANCEL,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -80,10 +110,11 @@ pub struct PasswordViewProps {
   api_key: String,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Debug, Serialize, Deserialize, ToString)]
 pub enum ApiKeyKind {
-  Valid,
-  Cancel,
+  VALID,
+  CANCEL,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
