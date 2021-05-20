@@ -33,7 +33,7 @@ pub enum AuthError {
 pub struct ApiKeyNewValidProps {
   user_email: String,
   user_password: String,
-  duration: u64,
+  duration: i64,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -57,14 +57,14 @@ pub struct PasswordResetNewProps {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordNewChangeProps {
-  user_id: u64,
+  user_id: i64,
   old_password: String,
   new_password: String,
   api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordNewCancelProps {
-  user_id: u64,
+  user_id: i64,
   api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -75,15 +75,15 @@ pub struct PasswordNewResetProps {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct UserViewProps {
-  user_id: Option<u64>,              //
-  creation_time: Option<u64>,        //
-  min_creation_time: Option<u64>,    //
-  max_creation_time: Option<u64>,    //
+  user_id: Option<i64>,              //
+  creation_time: Option<i64>,        //
+  min_creation_time: Option<i64>,    //
+  max_creation_time: Option<i64>,    //
   user_name: Option<String>,         //
   partial_user_name: Option<String>, //
   user_email: Option<String>,        //
-  offset: Option<u64>,
-  count: Option<u64>,
+  offset: Option<i64>,
+  count: Option<i64>,
   api_key: String,
 }
 
@@ -97,16 +97,16 @@ pub enum PasswordKind {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordViewProps {
-  password_id: Option<u64>,            //
-  creation_time: Option<u64>,          //
-  min_creation_time: Option<u64>,      //
-  max_creation_time: Option<u64>,      //
-  creator_user_id: Option<u64>,        //
-  user_id: Option<u64>,                //
+  password_id: Option<i64>,            //
+  creation_time: Option<i64>,          //
+  min_creation_time: Option<i64>,      //
+  max_creation_time: Option<i64>,      //
+  creator_user_id: Option<i64>,        //
+  user_id: Option<i64>,                //
   password_kind: Option<PasswordKind>, //
   only_recent: Option<bool>,
-  offset: Option<u64>,
-  count: Option<u64>,
+  offset: Option<i64>,
+  count: Option<i64>,
   api_key: String,
 }
 
@@ -119,17 +119,17 @@ pub enum ApiKeyKind {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ApiKeyViewProps {
-  api_key_id: Option<u64>,          //
-  creator_user_id: Option<u64>,     //
-  creation_time: Option<u64>,       //
-  min_creation_time: Option<u64>,   //
-  max_creation_time: Option<u64>,   //
-  duration: Option<u64>,            //
-  min_duration: Option<u64>,        //
-  max_duration: Option<u64>,        //
+  api_key_id: Option<i64>,          //
+  creator_user_id: Option<i64>,     //
+  creation_time: Option<i64>,       //
+  min_creation_time: Option<i64>,   //
+  max_creation_time: Option<i64>,   //
+  duration: Option<i64>,            //
+  min_duration: Option<i64>,        //
+  max_duration: Option<i64>,        //
   api_key_kind: Option<ApiKeyKind>, //
   only_recent: Option<bool>,        //
-  offset: Option<u64>,
-  count: Option<u64>,
+  offset: Option<i64>,
+  count: Option<i64>,
   api_key: String,
 }
