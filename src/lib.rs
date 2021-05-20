@@ -97,13 +97,13 @@ pub enum PasswordKind {
 }
 
 impl TryFrom<u8> for PasswordKind {
-  type Error = ();
-  fn try_from(val: u8) -> Result<PasswordKind, ()> {
+  type Error = u8;
+  fn try_from(val: u8) -> Result<PasswordKind, u8> {
     match val {
       x if x == PasswordKind::CHANGE as u8 => Ok(PasswordKind::CHANGE),
       x if x == PasswordKind::RESET as u8 => Ok(PasswordKind::RESET),
       x if x == PasswordKind::CANCEL as u8 => Ok(PasswordKind::CANCEL),
-      _ => Err(()),
+      x => Err(x),
     }
   }
 }
@@ -131,12 +131,12 @@ pub enum ApiKeyKind {
 }
 
 impl TryFrom<u8> for ApiKeyKind {
-  type Error = ();
-  fn try_from(val: u8) -> Result<ApiKeyKind, ()> {
+  type Error = u8;
+  fn try_from(val: u8) -> Result<ApiKeyKind, u8> {
     match val {
       x if x == ApiKeyKind::VALID as u8 => Ok(ApiKeyKind::VALID),
       x if x == ApiKeyKind::CANCEL as u8 => Ok(ApiKeyKind::CANCEL),
-      _ => Err(()),
+      x => Err(x),
     }
   }
 }
