@@ -117,7 +117,7 @@ pub struct PasswordViewProps {
   pub creator_user_id: Option<i64>,        //
   pub user_id: Option<i64>,                //
   pub password_kind: Option<PasswordKind>, //
-  pub only_recent: Option<bool>,
+  pub only_recent: bool,
   pub offset: Option<i64>,
   pub count: Option<i64>,
   pub api_key: String,
@@ -152,7 +152,7 @@ pub struct ApiKeyViewProps {
   pub min_duration: Option<i64>,        //
   pub max_duration: Option<i64>,        //
   pub api_key_kind: Option<ApiKeyKind>, //
-  pub only_recent: Option<bool>,        //
+  pub only_recent: bool,                //
   pub offset: Option<i64>,
   pub count: Option<i64>,
   pub api_key: String,
