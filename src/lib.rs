@@ -32,60 +32,60 @@ pub enum AuthError {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ApiKeyNewValidProps {
-  user_email: String,
-  user_password: String,
-  duration: i64,
+  pub user_email: String,
+  pub user_password: String,
+  pub duration: i64,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ApiKeyNewCancelProps {
-  api_key_to_cancel: String,
-  api_key: String,
+  pub api_key_to_cancel: String,
+  pub api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct VerificationChallengeNewProps {
-  user_name: String,
-  user_email: String,
-  user_password: String,
+  pub user_name: String,
+  pub user_email: String,
+  pub user_password: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct UserNewProps {
-  verification_challenge_key: String,
+  pub verification_challenge_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordResetNewProps {
-  user_email: String,
+  pub user_email: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordNewChangeProps {
-  user_id: i64,
-  old_password: String,
-  new_password: String,
-  api_key: String,
+  pub user_id: i64,
+  pub old_password: String,
+  pub new_password: String,
+  pub api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordNewCancelProps {
-  user_id: i64,
-  api_key: String,
+  pub user_id: i64,
+  pub api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordNewResetProps {
-  password_reset_key: String,
-  new_password: String,
+  pub password_reset_key: String,
+  pub new_password: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct UserViewProps {
-  user_id: Option<i64>,              //
-  creation_time: Option<i64>,        //
-  min_creation_time: Option<i64>,    //
-  max_creation_time: Option<i64>,    //
-  user_name: Option<String>,         //
-  partial_user_name: Option<String>, //
-  user_email: Option<String>,        //
-  offset: Option<i64>,
-  count: Option<i64>,
-  api_key: String,
+  pub user_id: Option<i64>,              //
+  pub creation_time: Option<i64>,        //
+  pub min_creation_time: Option<i64>,    //
+  pub max_creation_time: Option<i64>,    //
+  pub user_name: Option<String>,         //
+  pub partial_user_name: Option<String>, //
+  pub user_email: Option<String>,        //
+  pub offset: Option<i64>,
+  pub count: Option<i64>,
+  pub api_key: String,
 }
 
 #[allow(non_camel_case_types)]
@@ -110,17 +110,17 @@ impl TryFrom<u8> for PasswordKind {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordViewProps {
-  password_id: Option<i64>,            //
-  creation_time: Option<i64>,          //
-  min_creation_time: Option<i64>,      //
-  max_creation_time: Option<i64>,      //
-  creator_user_id: Option<i64>,        //
-  user_id: Option<i64>,                //
-  password_kind: Option<PasswordKind>, //
-  only_recent: Option<bool>,
-  offset: Option<i64>,
-  count: Option<i64>,
-  api_key: String,
+  pub password_id: Option<i64>,            //
+  pub creation_time: Option<i64>,          //
+  pub min_creation_time: Option<i64>,      //
+  pub max_creation_time: Option<i64>,      //
+  pub creator_user_id: Option<i64>,        //
+  pub user_id: Option<i64>,                //
+  pub password_kind: Option<PasswordKind>, //
+  pub only_recent: Option<bool>,
+  pub offset: Option<i64>,
+  pub count: Option<i64>,
+  pub api_key: String,
 }
 
 #[allow(non_camel_case_types)]
@@ -143,17 +143,17 @@ impl TryFrom<u8> for ApiKeyKind {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ApiKeyViewProps {
-  api_key_id: Option<i64>,          //
-  creator_user_id: Option<i64>,     //
-  creation_time: Option<i64>,       //
-  min_creation_time: Option<i64>,   //
-  max_creation_time: Option<i64>,   //
-  duration: Option<i64>,            //
-  min_duration: Option<i64>,        //
-  max_duration: Option<i64>,        //
-  api_key_kind: Option<ApiKeyKind>, //
-  only_recent: Option<bool>,        //
-  offset: Option<i64>,
-  count: Option<i64>,
-  api_key: String,
+  pub api_key_id: Option<i64>,          //
+  pub creator_user_id: Option<i64>,     //
+  pub creation_time: Option<i64>,       //
+  pub min_creation_time: Option<i64>,   //
+  pub max_creation_time: Option<i64>,   //
+  pub duration: Option<i64>,            //
+  pub min_duration: Option<i64>,        //
+  pub max_duration: Option<i64>,        //
+  pub api_key_kind: Option<ApiKeyKind>, //
+  pub only_recent: Option<bool>,        //
+  pub offset: Option<i64>,
+  pub count: Option<i64>,
+  pub api_key: String,
 }
