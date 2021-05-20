@@ -1,5 +1,6 @@
 // Types of arguments for auth handlers
 use serde::{Deserialize, Serialize};
+use std::convert::TryFrom;
 use strum::AsRefStr;
 
 #[allow(non_camel_case_types)]
@@ -26,7 +27,7 @@ pub enum AuthError {
   PASSWORD_RESET_TIMED_OUT,
   EMAIL_RATELIMIT,
   EMAIL_BLACKLISTED,
-  UNKNOWN
+  UNKNOWN,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -95,6 +96,18 @@ pub enum PasswordKind {
   CANCEL,
 }
 
+impl TryFrom<u8> for PasswordKind {
+  type Error = ();
+  fn try_from(val: u8) -> Result<PasswordKind, ()> {
+    match val {
+      x if x == PasswordKind::CHANGE as u8 => Ok(PasswordKind::CHANGE),
+      x if x == PasswordKind::RESET as u8 => Ok(PasswordKind::RESET),
+      x if x == PasswordKind::CANCEL as u8 => Ok(PasswordKind::CANCEL),
+      _ => Err(()),
+    }
+  }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PasswordViewProps {
   password_id: Option<i64>,            //
@@ -115,6 +128,17 @@ pub struct PasswordViewProps {
 pub enum ApiKeyKind {
   VALID,
   CANCEL,
+}
+
+impl TryFrom<u8> for ApiKeyKind {
+  type Error = ();
+  fn try_from(val: u8) -> Result<ApiKeyKind, ()> {
+    match val {
+      x if x == ApiKeyKind::VALID as u8 => Ok(ApiKeyKind::VALID),
+      x if x == ApiKeyKind::CANCEL as u8 => Ok(ApiKeyKind::CANCEL),
+      _ => Err(()),
+    }
+  }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
