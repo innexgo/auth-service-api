@@ -4,6 +4,7 @@ use std::convert::TryFrom;
 use strum::AsRefStr;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ApiKeyNewValidProps {
   pub user_email: String,
   pub user_password: String,
@@ -11,43 +12,49 @@ pub struct ApiKeyNewValidProps {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ApiKeyNewCancelProps {
   pub api_key_to_cancel: String,
   pub api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct VerificationChallengeNewProps {
   pub user_name: String,
   pub user_email: String,
   pub user_password: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct UserNewProps {
   pub verification_challenge_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PasswordResetNewProps {
   pub user_email: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PasswordNewChangeProps {
-  pub user_id: i64,
   pub old_password: String,
   pub new_password: String,
   pub api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PasswordNewCancelProps {
-  pub user_id: i64,
   pub api_key: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PasswordNewResetProps {
   pub password_reset_key: String,
   pub new_password: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct UserViewProps {
   pub user_id: Option<i64>,              //
   pub creation_time: Option<i64>,        //
@@ -61,27 +68,28 @@ pub struct UserViewProps {
   pub api_key: String,
 }
 
-#[allow(non_camel_case_types)]
 #[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum PasswordKind {
-  CHANGE,
-  RESET,
-  CANCEL,
+  Change,
+  Reset,
+  Cancel,
 }
 
 impl TryFrom<u8> for PasswordKind {
   type Error = u8;
   fn try_from(val: u8) -> Result<PasswordKind, u8> {
     match val {
-      x if x == PasswordKind::CHANGE as u8 => Ok(PasswordKind::CHANGE),
-      x if x == PasswordKind::RESET as u8 => Ok(PasswordKind::RESET),
-      x if x == PasswordKind::CANCEL as u8 => Ok(PasswordKind::CANCEL),
+      x if x == PasswordKind::Change as u8 => Ok(PasswordKind::Change),
+      x if x == PasswordKind::Reset as u8 => Ok(PasswordKind::Reset),
+      x if x == PasswordKind::Cancel as u8 => Ok(PasswordKind::Cancel),
       x => Err(x),
     }
   }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PasswordViewProps {
   pub password_id: Option<i64>,            //
   pub creation_time: Option<i64>,          //
@@ -96,25 +104,26 @@ pub struct PasswordViewProps {
   pub api_key: String,
 }
 
-#[allow(non_camel_case_types)]
 #[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum ApiKeyKind {
-  VALID,
-  CANCEL,
+  Valid,
+  Cancel,
 }
 
 impl TryFrom<u8> for ApiKeyKind {
   type Error = u8;
   fn try_from(val: u8) -> Result<ApiKeyKind, u8> {
     match val {
-      x if x == ApiKeyKind::VALID as u8 => Ok(ApiKeyKind::VALID),
-      x if x == ApiKeyKind::CANCEL as u8 => Ok(ApiKeyKind::CANCEL),
+      x if x == ApiKeyKind::Valid as u8 => Ok(ApiKeyKind::Valid),
+      x if x == ApiKeyKind::Cancel as u8 => Ok(ApiKeyKind::Cancel),
       x => Err(x),
     }
   }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ApiKeyViewProps {
   pub api_key_id: Option<i64>,          //
   pub creator_user_id: Option<i64>,     //

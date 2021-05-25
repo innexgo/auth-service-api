@@ -1,77 +1,87 @@
 use serde::{Deserialize, Serialize};
 use strum::AsRefStr;
 
-use super::request::{ApiKeyKind, PasswordKind};
+use super::request::{PasswordKind};
 
-#[allow(non_camel_case_types)]
 #[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum AuthError {
-  NOT_FOUND,
-  NO_CAPABILITY,
-  API_KEY_UNAUTHORIZED,
-  PASSWORD_INCORRECT,
-  PASSWORD_INSECURE,
-  PASSWORD_CANNOT_CREATE_FOR_OTHERS,
-  USER_NONEXISTENT,
-  API_KEY_NONEXISTENT,
-  USER_EXISTENT,
-  USER_NAME_EMPTY,
-  USER_EMAIL_EMPTY,
-  USER_EMAIL_INVALIDATED,
-  NEGATIVE_DURATION,
-  CANNOT_ALTER_PAST,
-  VERIFICATION_CHALLENGE_NONEXISTENT,
-  VERIFICATION_CHALLENGE_TIMED_OUT,
-  PASSWORD_RESET_NONEXISTENT,
-  PASSWORD_EXISTENT,
-  PASSWORD_NONEXISTENT,
-  PASSWORD_RESET_TIMED_OUT,
-  EMAIL_RATELIMIT,
-  EMAIL_BLACKLISTED,
-  UNKNOWN,
+  NotFound,
+  NoCapability,
+  ApiKeyUnauthorized,
+  PasswordIncorrect,
+  PasswordInsecure,
+  PasswordCannotCreateForOthers,
+  UserNonexistent,
+  ApiKeyNonexistent,
+  UserExistent,
+  UserNameEmpty,
+  UserEmailEmpty,
+  UserEmailInvalidated,
+  NegativeDuration,
+  CannotAlterPast,
+  VerificationChallengeNonexistent,
+  VerificationChallengeTimedOut,
+  PasswordResetNonexistent,
+  PasswordExistent,
+  PasswordNonexistent,
+  PasswordResetTimedOut,
+  EmailRatelimit,
+  EmailBlacklisted,
+  Unknown,
 }
 
-#[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct VerificationChallenge {
-  pub creationTime: i64,
+  pub creation_time: i64,
   pub name: String,
   pub email: String,
 }
 
-#[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct User {
-  pub userId: i64,
-  pub creationTime: i64,
+  pub user_id: i64,
+  pub creation_time: i64,
   pub name: String,
   pub email: String,
 }
 
-#[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PasswordReset {
-  pub creationTime: i64,
+  pub creation_time: i64,
 }
 
-#[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Password {
-  pub passwordId: i64,
-  pub creationTime: i64,
+  pub password_id: i64,
+  pub creation_time: i64,
   pub creator: User,
-  pub user: User,
-  pub kind: PasswordKind,
-  pub passwordReset: Option<PasswordReset>,
+  pub password_kind: PasswordKind,
 }
 
-#[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(tag = "type")]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum ApiKeyData {
+  // the interior of the struct should be normal, but the VALID and CANCEL tags should be screaming case
+  #[serde(rename_all = "camelCase")]
+  Valid {
+      key: String,
+      duration: i64
+  },
+  Cancel
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ApiKey {
-  pub apiKeyId: i64,
-  pub creationTime: i64,
+  pub api_key_id: i64,
+  pub creation_time: i64,
   pub creator: User,
-  pub apiKeyKind: ApiKeyKind,
-  pub duration: Option<i64>, // only valid if ApiKeyKind isn't CANCEL
-  pub key: Option<String>,   // only valid if ApiKeyKind isn't CANCEL
+  #[serde(flatten)]
+  pub api_key_kind: ApiKeyData,
 }
