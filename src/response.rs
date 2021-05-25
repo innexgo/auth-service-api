@@ -33,45 +33,45 @@ pub enum AuthError {
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
-struct VerificationChallenge {
-  creationTime: i64,
-  name: String,
-  email: String,
+pub struct VerificationChallenge {
+  pub creationTime: i64,
+  pub name: String,
+  pub email: String,
 }
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
-struct User {
-  userId: i64,
-  creationTime: i64,
-  name: String,
-  email: String,
+pub struct User {
+  pub userId: i64,
+  pub creationTime: i64,
+  pub name: String,
+  pub email: String,
 }
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
-struct PasswordReset {
-  creationTime: i64,
+pub struct PasswordReset {
+  pub creationTime: i64,
 }
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
-struct Password {
-  passwordId: i64,
-  creationTime: i64,
-  creator: User,
-  user: User,
-  kind: PasswordKind,
-  passwordReset: Option<PasswordReset>,
+pub struct Password {
+  pub passwordId: i64,
+  pub creationTime: i64,
+  pub creator: User,
+  pub user: User,
+  pub kind: PasswordKind,
+  pub passwordReset: Option<PasswordReset>,
 }
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Serialize, Deserialize)]
-struct ApiKey {
-  apiKeyId: i64,
-  creationTime: i64,
-  creator: User,
-  duration: i64, // only valid if ApiKeyKind isn't CANCEL
-  key: String,   // only valid if ApiKeyKind isn't CANCEL
-  apiKeyKind: ApiKeyKind,
+pub struct ApiKey {
+  pub apiKeyId: i64,
+  pub creationTime: i64,
+  pub creator: User,
+  pub apiKeyKind: ApiKeyKind,
+  pub duration: Option<i64>, // only valid if ApiKeyKind isn't CANCEL
+  pub key: Option<String>,   // only valid if ApiKeyKind isn't CANCEL
 }
