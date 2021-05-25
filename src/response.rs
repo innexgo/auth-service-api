@@ -64,13 +64,13 @@ pub struct Password {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-#[serde(tag = "type")]
+#[serde(tag = "api_key_kind")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum ApiKeyData {
   // the interior of the struct should be normal, but the VALID and CANCEL tags should be screaming case
   #[serde(rename_all = "camelCase")]
   Valid {
-      key: String,
+      key: Option<String>,
       duration: i64
   },
   Cancel
@@ -83,5 +83,5 @@ pub struct ApiKey {
   pub creation_time: i64,
   pub creator: User,
   #[serde(flatten)]
-  pub api_key_kind: ApiKeyData,
+  pub api_key_data: ApiKeyData,
 }
