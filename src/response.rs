@@ -26,8 +26,9 @@ pub enum AuthError {
   PasswordExistent,
   PasswordNonexistent,
   PasswordResetTimedOut,
-  EmailRatelimit,
-  EmailBlacklisted,
+  EmailBounced,
+  EmailUnknown,
+  InternalServerError,
   Unknown,
 }
 
