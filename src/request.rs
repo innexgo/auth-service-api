@@ -140,3 +140,15 @@ pub struct ApiKeyViewProps {
   pub api_key: String,
 }
 
+// Private Api
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GetUserByIdProps {
+  pub user_id: i64
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GetUserByApiKeyIfValid {
+  pub api_key: String
+}

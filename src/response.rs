@@ -6,7 +6,6 @@ use super::request::{PasswordKind};
 #[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum AuthError {
-  NotFound,
   NoCapability,
   ApiKeyUnauthorized,
   PasswordIncorrect,
@@ -28,7 +27,12 @@ pub enum AuthError {
   PasswordResetTimedOut,
   EmailBounced,
   EmailUnknown,
+  NetworkError,
+  DecodeError,
   InternalServerError,
+  MethodNotAllowed,
+  BadRequest,
+  NotFound,
   Unknown,
 }
 
