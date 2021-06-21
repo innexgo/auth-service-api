@@ -25,7 +25,7 @@ impl AuthService {
   ) -> Result<response::User, response::AuthError> {
     self
       .client
-      .post(format!("{}/auth/new", self.auth_service_url))
+      .post(format!("{}/get_user_by_api_key_if_valid", self.auth_service_url))
       .json(&request::GetUserByApiKeyIfValid { api_key })
       .send()
       .await
@@ -43,7 +43,7 @@ impl AuthService {
   ) -> Result<Vec<response::User>, response::AuthError> {
     self
       .client
-      .post(format!("{}/auth/view", self.auth_service_url))
+      .post(format!("{}/get_user_by_id", self.auth_service_url))
       .json(&request::GetUserByIdProps { user_id })
       .send()
       .await
