@@ -57,7 +57,6 @@ pub struct PasswordNewResetProps {
 #[serde(rename_all = "camelCase")]
 pub struct UserViewProps {
   pub user_id: Option<i64>,              //
-  pub creation_time: Option<i64>,        //
   pub min_creation_time: Option<i64>,    //
   pub max_creation_time: Option<i64>,    //
   pub user_name: Option<String>,         //
@@ -92,7 +91,6 @@ impl TryFrom<u8> for PasswordKind {
 #[serde(rename_all = "camelCase")]
 pub struct PasswordViewProps {
   pub password_id: Option<i64>,            //
-  pub creation_time: Option<i64>,          //
   pub min_creation_time: Option<i64>,      //
   pub max_creation_time: Option<i64>,      //
   pub creator_user_id: Option<i64>,        //
@@ -127,10 +125,8 @@ impl TryFrom<u8> for ApiKeyKind {
 pub struct ApiKeyViewProps {
   pub api_key_id: Option<i64>,          //
   pub creator_user_id: Option<i64>,     //
-  pub creation_time: Option<i64>,       //
   pub min_creation_time: Option<i64>,   //
   pub max_creation_time: Option<i64>,   //
-  pub duration: Option<i64>,            //
   pub min_duration: Option<i64>,        //
   pub max_duration: Option<i64>,        //
   pub api_key_kind: Option<ApiKeyKind>, //
