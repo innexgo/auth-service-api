@@ -40,7 +40,7 @@ impl AuthService {
   pub async fn get_user_by_id(
     &self,
     user_id: i64,
-  ) -> Result<Vec<response::User>, response::AuthError> {
+  ) -> Result<response::User, response::AuthError> {
     self
       .client
       .post(format!("{}/get_user_by_id", self.auth_service_url))
