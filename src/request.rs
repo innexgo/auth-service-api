@@ -24,11 +24,13 @@ pub struct VerificationChallengeNewProps {
   pub user_email: String,
   pub user_password: String,
 }
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UserNewProps {
   pub verification_challenge_key: String,
 }
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PasswordResetNewProps {
@@ -56,14 +58,11 @@ pub struct PasswordNewResetProps {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UserViewProps {
-  pub user_id: Option<i64>,              //
-  pub min_creation_time: Option<i64>,    //
-  pub max_creation_time: Option<i64>,    //
-  pub user_name: Option<String>,         //
-  pub partial_user_name: Option<String>, //
-  pub user_email: Option<String>,        //
-  pub offset: Option<i64>,
-  pub count: Option<i64>,
+  pub user_id: Option<Vec<i64>>,
+  pub min_creation_time: Option<i64>,
+  pub max_creation_time: Option<i64>,
+  pub user_name: Option<Vec<String>>,
+  pub user_email: Option<Vec<String>>,
   pub api_key: String,
 }
 
@@ -90,15 +89,12 @@ impl TryFrom<u8> for PasswordKind {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PasswordViewProps {
-  pub password_id: Option<i64>,            //
-  pub min_creation_time: Option<i64>,      //
-  pub max_creation_time: Option<i64>,      //
-  pub creator_user_id: Option<i64>,        //
-  pub user_id: Option<i64>,                //
-  pub password_kind: Option<PasswordKind>, //
+  pub password_id: Option<Vec<i64>>,
+  pub min_creation_time: Option<i64>,
+  pub max_creation_time: Option<i64>,
+  pub creator_user_id: Option<Vec<i64>>,
+  pub password_kind: Option<PasswordKind>,
   pub only_recent: bool,
-  pub offset: Option<i64>,
-  pub count: Option<i64>,
   pub api_key: String,
 }
 
@@ -123,16 +119,14 @@ impl TryFrom<u8> for ApiKeyKind {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ApiKeyViewProps {
-  pub api_key_id: Option<i64>,          //
-  pub creator_user_id: Option<i64>,     //
-  pub min_creation_time: Option<i64>,   //
-  pub max_creation_time: Option<i64>,   //
-  pub min_duration: Option<i64>,        //
-  pub max_duration: Option<i64>,        //
-  pub api_key_kind: Option<ApiKeyKind>, //
-  pub only_recent: bool,                //
-  pub offset: Option<i64>,
-  pub count: Option<i64>,
+  pub api_key_id: Option<i64>,
+  pub creator_user_id: Option<i64>,
+  pub min_creation_time: Option<i64>,
+  pub max_creation_time: Option<i64>,
+  pub min_duration: Option<i64>,
+  pub max_duration: Option<i64>,
+  pub api_key_kind: Option<ApiKeyKind>,
+  pub only_recent: bool,
   pub api_key: String,
 }
 
@@ -140,11 +134,11 @@ pub struct ApiKeyViewProps {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetUserByIdProps {
-  pub user_id: i64
+  pub user_id: i64,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetUserByApiKeyIfValid {
-  pub api_key: String
+  pub api_key: String,
 }
