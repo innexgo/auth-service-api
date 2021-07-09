@@ -62,6 +62,7 @@ pub struct UserViewProps {
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
   pub user_name: Option<Vec<String>>,
+  pub partial_user_name: Option<String>,
   pub user_email: Option<Vec<String>>,
   pub api_key: String,
 }
