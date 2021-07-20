@@ -20,6 +20,7 @@ pub enum AuthError {
   CannotAlterPast,
   VerificationChallengeNonexistent,
   VerificationChallengeTimedOut,
+  VerificationChallengeWrongKind,
   ParentPermissionNonexistent,
   ParentPermissionExistent,
   PasswordResetNonexistent,
@@ -43,6 +44,7 @@ pub enum AuthError {
 #[serde(rename_all = "camelCase")]
 pub struct VerificationChallenge {
   pub creation_time: i64,
+  pub to_parent: bool,
   pub email: String,
 }
 

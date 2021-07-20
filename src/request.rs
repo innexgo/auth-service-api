@@ -21,18 +21,12 @@ pub struct ApiKeyNewCancelProps {
 }
 
 // this sends an email to your account, click on it to change your email
-#[derive(Clone, Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct VerificationChallengeNewEmailProps {
-  pub new_email: String,
-  pub api_key: String,
-}
-
 // this sends an email to the parent_email specified, parent can authorize it to give you a permission
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VerificationChallengeNewParentalPermissionProps {
-  pub parent_email: String,
+pub struct VerificationChallengeNewProps {
+  pub email: String,
+  pub to_parent: bool,
   pub api_key: String,
 }
 
@@ -117,6 +111,18 @@ pub struct UserDataViewProps {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub struct VerificationChallengeViewProps {
+  pub min_creation_time: Option<i64>,
+  pub max_creation_time: Option<i64>,
+  pub creator_user_id: Option<Vec<i64>>,
+  pub to_parent: Option<bool>,
+  pub email: Option<Vec<String>>,
+  pub api_key: String,
+}
+
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct EmailViewProps {
   pub email_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
@@ -135,7 +141,6 @@ pub struct ParentPermissionViewProps {
   pub max_creation_time: Option<i64>,
   pub user_id: Option<Vec<i64>>,
   pub from_challenge: Option<bool>,
-  pub verification_challenge_key_hash: Option<Vec<String>>,
   pub only_recent:bool,
   pub parent_email: Option<Vec<String>>,
   pub api_key: String,
@@ -147,9 +152,7 @@ pub struct PasswordViewProps {
   pub password_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
-  pub creator_user_id: Option<Vec<i64>>,
   pub from_reset: Option<bool>,
-  pub password_reset_key_hash: Option<Vec<String>>,
   pub only_recent: bool,
   pub api_key: String,
 }
