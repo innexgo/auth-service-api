@@ -1,13 +1,12 @@
 use serde::{Deserialize, Serialize};
 use strum::AsRefStr;
 
-use super::request::{PasswordKind};
-
 #[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum AuthError {
   NoCapability,
   ApiKeyUnauthorized,
+  NoPermission,
   PasswordIncorrect,
   PasswordInsecure,
   PasswordCannotCreateForOthers,
@@ -21,9 +20,13 @@ pub enum AuthError {
   CannotAlterPast,
   VerificationChallengeNonexistent,
   VerificationChallengeTimedOut,
+  ParentPermissionNonexistent,
+  ParentPermissionExistent,
   PasswordResetNonexistent,
   PasswordExistent,
   PasswordNonexistent,
+  EmailExistent,
+  EmailNonexistent,
   PasswordResetTimedOut,
   EmailBounced,
   EmailUnknown,
@@ -40,7 +43,6 @@ pub enum AuthError {
 #[serde(rename_all = "camelCase")]
 pub struct VerificationChallenge {
   pub creation_time: i64,
-  pub name: String,
   pub email: String,
 }
 
@@ -49,8 +51,33 @@ pub struct VerificationChallenge {
 pub struct User {
   pub user_id: i64,
   pub creation_time: i64,
-  pub name: String,
-  pub email: String,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UserData {
+    pub user_data_id: i64,
+    pub creation_time: i64,
+    pub user_id: i64,
+    pub name: String,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Email {
+  pub email_id: i64,
+  pub creation_time: i64,
+  pub user: User,
+  pub verification_challenge: VerificationChallenge
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ParentPermission {
+  pub parent_permission_id: i64,
+  pub creation_time: i64,
+  pub user: User,
+  pub verification_challenge: Option<VerificationChallenge>
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -65,7 +92,7 @@ pub struct Password {
   pub password_id: i64,
   pub creation_time: i64,
   pub creator: User,
-  pub password_kind: PasswordKind,
+  pub password_reset: Option<PasswordReset>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
