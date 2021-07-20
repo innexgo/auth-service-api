@@ -60,7 +60,7 @@ pub struct User {
 pub struct UserData {
     pub user_data_id: i64,
     pub creation_time: i64,
-    pub user_id: i64,
+    pub creator: User,
     pub name: String,
 }
 
@@ -69,7 +69,7 @@ pub struct UserData {
 pub struct Email {
   pub email_id: i64,
   pub creation_time: i64,
-  pub user: User,
+  pub creator: User,
   pub verification_challenge: VerificationChallenge
 }
 
