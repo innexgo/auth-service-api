@@ -49,8 +49,9 @@ pub struct ParentPermissionNewProps {
 #[serde(rename_all = "camelCase")]
 pub struct UserNewProps {
   pub user_name: String,
+  pub user_email: String,
   pub user_password: String,
-  pub older_than_13: String,
+  pub parent_email: Option<String>,
 }
 
 // lets you change your name
