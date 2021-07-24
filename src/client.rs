@@ -29,7 +29,7 @@ impl AuthService {
       .json(&request::GetUserByApiKeyIfValid { api_key })
       .send()
       .await
-      .map_err(|_| response::AuthError::NetworkError)?
+      .map_err(|_| response::AuthError::Network)?
       .json()
       .await
       .map_err(|_| response::AuthError::DecodeError)?
@@ -47,7 +47,7 @@ impl AuthService {
       .json(&request::GetUserByIdProps { user_id })
       .send()
       .await
-      .map_err(|_| response::AuthError::NetworkError)?
+      .map_err(|_| response::AuthError::Network)?
       .json()
       .await
       .map_err(|_| response::AuthError::DecodeError)?

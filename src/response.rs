@@ -25,21 +25,21 @@ pub enum AuthError {
   VerificationChallengeWrongKind,
   ParentPermissionNonexistent,
   ParentPermissionExistent,
-  PasswordResetNonexistent,
   PasswordExistent,
   PasswordNonexistent,
   EmailExistent,
   EmailNonexistent,
+  PasswordResetNonexistent,
   PasswordResetTimedOut,
   EmailBounced,
   EmailUnknown,
-  NetworkError,
   DecodeError,
   InternalServerError,
   MethodNotAllowed,
   BadRequest,
   NotFound,
   Unknown,
+  Network,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
