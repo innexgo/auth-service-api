@@ -62,7 +62,7 @@ pub struct User {
 pub struct UserData {
     pub user_data_id: i64,
     pub creation_time: i64,
-    pub creator: User,
+    pub creator_user_id: i64,
     pub name: String,
 }
 
@@ -71,7 +71,7 @@ pub struct UserData {
 pub struct Email {
   pub email_id: i64,
   pub creation_time: i64,
-  pub creator: User,
+  pub creator_user_id: i64,
   pub verification_challenge: VerificationChallenge
 }
 
@@ -80,7 +80,7 @@ pub struct Email {
 pub struct ParentPermission {
   pub parent_permission_id: i64,
   pub creation_time: i64,
-  pub user: User,
+  pub user_id: i64,
   pub verification_challenge: Option<VerificationChallenge>
 }
 
@@ -95,7 +95,7 @@ pub struct PasswordReset {
 pub struct Password {
   pub password_id: i64,
   pub creation_time: i64,
-  pub creator: User,
+  pub creator_user_id: i64,
   pub password_reset: Option<PasswordReset>,
 }
 
@@ -117,7 +117,7 @@ pub enum ApiKeyData {
 pub struct ApiKey {
   pub api_key_id: i64,
   pub creation_time: i64,
-  pub creator: User,
+  pub creator_user_id: i64,
   #[serde(flatten)]
   pub api_key_data: ApiKeyData,
 }
