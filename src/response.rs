@@ -121,3 +121,12 @@ pub struct ApiKey {
   #[serde(flatten)]
   pub api_key_data: ApiKeyData,
 }
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Info {
+  pub service: String,
+  pub version_major: i64,
+  pub version_minor: i64,
+  pub version_rev: i64,
+}

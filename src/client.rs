@@ -52,4 +52,19 @@ impl AuthService {
       .await
       .map_err(|_| response::AuthError::DecodeError)?
   }
+
+  // fetches api information
+  pub async fn info(
+    &self,
+  ) -> Result<Vec<response::Info>, response::AuthError> {
+    self
+      .client
+      .post(format!("{}/public/info", self.auth_service_url))
+      .send()
+      .await
+      .map_err(|_| response::AuthError::Network)?
+      .json()
+      .await
+      .map_err(|_| response::AuthError::DecodeError)?
+  }
 }
