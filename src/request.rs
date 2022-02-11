@@ -131,19 +131,6 @@ pub struct EmailViewProps {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct EmailViewParentProps {
-  pub email_id: Option<Vec<i64>>,
-  pub min_creation_time: Option<i64>,
-  pub max_creation_time: Option<i64>,
-  pub only_recent:bool,
-  pub creator_user_id: Option<Vec<i64>>,
-  pub email: Option<Vec<String>>,
-  pub api_key: String,
-}
-
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct PasswordViewProps {
   pub password_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
