@@ -61,7 +61,9 @@ pub struct UserData {
     pub user_data_id: i64,
     pub creation_time: i64,
     pub creator_user_id: i64,
-    pub name: String,
+    pub dateofbirth: i64,
+    pub username: String,
+    pub realname: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -69,7 +71,6 @@ pub struct UserData {
 pub struct Email {
     pub email_id: i64,
     pub creation_time: i64,
-    pub creator_user_id: i64,
     pub verification_challenge: VerificationChallenge,
 }
 

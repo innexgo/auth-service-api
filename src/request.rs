@@ -106,6 +106,8 @@ pub struct UserDataViewProps {
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
   pub creator_user_id: Option<Vec<i64>>,
+  pub min_dateofbirth: Option<i64>,
+  pub max_dateofbirth: Option<i64>,
   pub username: Option<Vec<String>>,
   pub realname: Option<Vec<String>>,
   pub only_recent:bool,
@@ -130,10 +132,10 @@ pub struct EmailViewProps {
   pub email_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
+  pub only_recent:bool,
   pub creator_user_id: Option<Vec<i64>>,
   pub email: Option<Vec<String>>,
-  pub parent: Option<bool>,
-  pub only_recent:bool,
+  pub to_parent: Option<bool>,
   pub api_key: String,
 }
 
