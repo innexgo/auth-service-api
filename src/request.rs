@@ -118,18 +118,20 @@ pub struct UserDataViewProps {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VerificationChallengeViewProps {
+pub struct EmailViewProps {
+  pub email_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
+  pub view_parent:bool,
+  pub only_recent:bool,
   pub creator_user_id: Option<Vec<i64>>,
-  pub to_parent: Option<bool>,
   pub email: Option<Vec<String>>,
   pub api_key: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct OwnEmailViewProps {
+pub struct EmailViewParentProps {
   pub email_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
@@ -138,6 +140,7 @@ pub struct OwnEmailViewProps {
   pub email: Option<Vec<String>>,
   pub api_key: String,
 }
+
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
