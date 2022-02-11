@@ -59,7 +59,9 @@ pub struct UserNewProps {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UserDataNewProps {
-  pub user_name: String,
+  pub username: String,
+  pub realname: String,
+  pub dateofbirth: String,
   pub api_key: String,
 }
 
@@ -67,7 +69,7 @@ pub struct UserDataNewProps {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PasswordResetNewProps {
-  pub user_email: String,
+  pub email: String,
 }
 
 // change your password
@@ -125,17 +127,15 @@ pub struct VerificationChallengeViewProps {
   pub api_key: String,
 }
 
-
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct EmailViewProps {
+pub struct OwnEmailViewProps {
   pub email_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
   pub only_recent:bool,
   pub creator_user_id: Option<Vec<i64>>,
   pub email: Option<Vec<String>>,
-  pub to_parent: Option<bool>,
   pub api_key: String,
 }
 
