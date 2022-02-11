@@ -108,7 +108,6 @@ pub struct ApiKey {
     pub api_key_id: i64,
     pub creation_time: i64,
     pub creator_user_id: i64,
-    pub verified: bool,
     #[serde(flatten)]
     pub api_key_data: ApiKeyData,
 }

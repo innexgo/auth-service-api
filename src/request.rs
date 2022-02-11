@@ -6,7 +6,7 @@ use strum::AsRefStr;
 // creates new api key
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ApiKeyNewValidEmailProps {
+pub struct ApiKeyNewWithEmailProps {
   pub email: String,
   pub password: String,
   pub duration: i64,
@@ -14,7 +14,7 @@ pub struct ApiKeyNewValidEmailProps {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ApiKeyNewValidUsernameProps {
+pub struct ApiKeyNewWithUsernameProps {
   pub username: String,
   pub password: String,
   pub duration: i64,
@@ -158,6 +158,8 @@ pub struct PasswordViewProps {
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum ApiKeyKind {
   Valid,
+  NoEmail,
+  NoParent,
   Cancel,
 }
 
@@ -166,6 +168,8 @@ impl TryFrom<u8> for ApiKeyKind {
   fn try_from(val: u8) -> Result<ApiKeyKind, u8> {
     match val {
       x if x == ApiKeyKind::Valid as u8 => Ok(ApiKeyKind::Valid),
+      x if x == ApiKeyKind::NoEmail as u8 => Ok(ApiKeyKind::NoEmail),
+      x if x == ApiKeyKind::NoParent as u8 => Ok(ApiKeyKind::NoParent),
       x if x == ApiKeyKind::Cancel as u8 => Ok(ApiKeyKind::Cancel),
       x => Err(x),
     }
@@ -181,8 +185,7 @@ pub struct ApiKeyViewProps {
   pub max_creation_time: Option<i64>,
   pub min_duration: Option<i64>,
   pub max_duration: Option<i64>,
-  pub api_key_kind: Option<ApiKeyKind>,
-  pub verified: Option<bool>,
+  pub api_key_kind: Option<Vec<ApiKeyKind>>,
   pub only_recent: bool,
   pub api_key: String,
 }
