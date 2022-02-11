@@ -99,6 +99,14 @@ pub enum ApiKeyData {
         key: Option<String>,
         duration: i64,
     },
+    NoEmail {
+        key: Option<String>,
+        duration: i64,
+    },
+    NoParent {
+        key: Option<String>,
+        duration: i64,
+    },
     Cancel,
 }
 
