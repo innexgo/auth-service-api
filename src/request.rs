@@ -6,9 +6,17 @@ use strum::AsRefStr;
 // creates new api key
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ApiKeyNewValidProps {
-  pub user_email: String,
-  pub user_password: String,
+pub struct ApiKeyNewValidEmailProps {
+  pub email: String,
+  pub password: String,
+  pub duration: i64,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ApiKeyNewValidUsernameProps {
+  pub username: String,
+  pub password: String,
   pub duration: i64,
 }
 
@@ -37,21 +45,14 @@ pub struct EmailNewProps {
   pub verification_challenge_key: String,
 }
 
-// parent will get key from email. once this call is made, then the student will be authorized
-#[derive(Clone, Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ParentPermissionNewProps {
-  pub verification_challenge_key: String,
-}
-
 // this initially sets up your account, but you will need to verify your email before you can do tasks
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UserNewProps {
-  pub user_name: String,
-  pub user_email: String,
-  pub user_password: String,
-  pub parent_email: Option<String>,
+  pub username: String,
+  pub realname: String,
+  pub password: String,
+  pub dateofbirth: i64,
 }
 
 // lets you change your name
@@ -105,7 +106,8 @@ pub struct UserDataViewProps {
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
   pub creator_user_id: Option<Vec<i64>>,
-  pub name: Option<Vec<String>>,
+  pub username: Option<Vec<String>>,
+  pub realname: Option<Vec<String>>,
   pub only_recent:bool,
   pub api_key: String,
 }
@@ -130,20 +132,8 @@ pub struct EmailViewProps {
   pub max_creation_time: Option<i64>,
   pub creator_user_id: Option<Vec<i64>>,
   pub email: Option<Vec<String>>,
+  pub parent: Option<bool>,
   pub only_recent:bool,
-  pub api_key: String,
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ParentPermissionViewProps {
-  pub parent_permission_id: Option<Vec<i64>>,
-  pub min_creation_time: Option<i64>,
-  pub max_creation_time: Option<i64>,
-  pub user_id: Option<Vec<i64>>,
-  pub from_challenge: Option<bool>,
-  pub only_recent:bool,
-  pub parent_email: Option<Vec<String>>,
   pub api_key: String,
 }
 
@@ -187,6 +177,7 @@ pub struct ApiKeyViewProps {
   pub min_duration: Option<i64>,
   pub max_duration: Option<i64>,
   pub api_key_kind: Option<ApiKeyKind>,
+  pub verified: Option<bool>,
   pub only_recent: bool,
   pub api_key: String,
 }
