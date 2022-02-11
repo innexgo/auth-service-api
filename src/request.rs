@@ -61,7 +61,7 @@ pub struct UserNewProps {
 pub struct UserDataNewProps {
   pub username: String,
   pub realname: String,
-  pub dateofbirth: String,
+  pub dateofbirth: i64,
   pub api_key: String,
 }
 
