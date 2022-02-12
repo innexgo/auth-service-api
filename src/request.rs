@@ -122,7 +122,7 @@ pub struct EmailViewProps {
   pub email_id: Option<Vec<i64>>,
   pub min_creation_time: Option<i64>,
   pub max_creation_time: Option<i64>,
-  pub view_parent:bool,
+  pub to_parent:bool,
   pub only_recent:bool,
   pub creator_user_id: Option<Vec<i64>>,
   pub email: Option<Vec<String>>,
