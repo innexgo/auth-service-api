@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use strum::AsRefStr;
+use super::request;
 
 #[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
@@ -90,34 +91,14 @@ pub struct Password {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-#[serde(tag = "api_key_kind")]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum ApiKeyData {
-    // the interior of the struct should be normal, but the VALID and CANCEL tags should be screaming case
-    #[serde(rename_all = "camelCase")]
-    Valid {
-        key: Option<String>,
-        duration: i64,
-    },
-    NoEmail {
-        key: Option<String>,
-        duration: i64,
-    },
-    NoParent {
-        key: Option<String>,
-        duration: i64,
-    },
-    Cancel,
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ApiKey {
     pub api_key_id: i64,
     pub creation_time: i64,
     pub creator_user_id: i64,
-    #[serde(flatten)]
-    pub api_key_data: ApiKeyData,
+    pub api_key_kind: request::ApiKeyKind,
+    pub key: Option<String>,
+    pub duration: i64,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
