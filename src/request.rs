@@ -53,6 +53,7 @@ pub struct UserNewProps {
   pub realname: String,
   pub password: String,
   pub dateofbirth: i64,
+  pub api_key_duration: u64
 }
 
 // lets you change your name
