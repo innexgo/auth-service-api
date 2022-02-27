@@ -43,6 +43,7 @@ pub struct VerificationChallengeNewProps {
 #[serde(rename_all = "camelCase")]
 pub struct EmailNewProps {
   pub verification_challenge_key: String,
+  pub to_parent:bool,
 }
 
 // this initially sets up your account, but you will need to verify your email before you can do tasks
