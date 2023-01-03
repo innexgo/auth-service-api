@@ -1,8 +1,8 @@
 use serde::{Deserialize, Serialize};
-use strum::AsRefStr;
+use derive_more::Display;
 use super::request;
 
-#[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
+#[derive(Clone, Debug, Serialize, Deserialize, Display)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum AuthError {
     NoCapability,

@@ -1,7 +1,7 @@
 // Types of arguments for auth handlers
 use serde::{Deserialize, Serialize};
 use std::convert::TryFrom;
-use strum::AsRefStr;
+use derive_more::Display;
 
 // creates new api key
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -143,7 +143,7 @@ pub struct PasswordViewProps {
   pub api_key: String,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, AsRefStr)]
+#[derive(Clone, Debug, Serialize, Deserialize, Display)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum ApiKeyKind {
   Valid,
