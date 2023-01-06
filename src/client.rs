@@ -10,7 +10,7 @@ pub struct AuthService {
 }
 
 impl AuthService {
-    pub async fn new(auth_service_url: &str) -> Self {
+    pub fn new(auth_service_url: &str) -> Self {
         AuthService {
             auth_service_url: String::from(auth_service_url),
             client: Client::new(),
