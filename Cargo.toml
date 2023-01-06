@@ -10,7 +10,7 @@ serde = { version = "1.0.152", features = ["derive"] }
 
 # these deps are needed when building a client
 reqwest = { version = "0.11.13", features = ["json"], optional = true }
-tokio = { version = "1.23.0", features = ["full"], optional = true }
+tokio = { version = "1.24.0", features = ["full"], optional = true }
 derive_more = "0.99.17"
 
 [features]

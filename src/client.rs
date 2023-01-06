@@ -95,4 +95,39 @@ impl AuthService {
                 .map_err(|_| response::AuthError::DecodeError)?)
         }
     }
+
+    // log in via email
+    pub async fn api_key_new_with_email(
+        &self,
+        email: String,
+        password: String,
+        duration: i64,
+    ) -> Result<response::ApiKey, response::AuthError> {
+        let resp = self
+            .client
+            .post(format!(
+                "{}/public/api_key/new_with_email",
+                self.auth_service_url
+            ))
+            .json(&request::ApiKeyNewWithEmailProps {
+                email,
+                password,
+                duration,
+            })
+            .send()
+            .await
+            .map_err(|_| response::AuthError::Network)?;
+
+        if resp.status().as_u16() == 200 {
+            Ok(resp
+                .json()
+                .await
+                .map_err(|_| response::AuthError::DecodeError)?)
+        } else {
+            Err(resp
+                .json()
+                .await
+                .map_err(|_| response::AuthError::DecodeError)?)
+        }
+    }
 }
