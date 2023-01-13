@@ -109,4 +109,5 @@ pub struct Info {
     pub version_minor: i64,
     pub version_rev: i64,
     pub site_external_url: String,
+    pub permitted_sources: Vec<String>,
 }
